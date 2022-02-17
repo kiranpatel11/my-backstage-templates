@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: "{{cookiecutter.artifact_id}}"
+  description: "{{cookiecutter.artifact_id}} Java REST API"
+  tags:
+    - service
+spec:
+  type: service
+  lifecycle: experimental
+  owner: {{cookiecutter.owner}}

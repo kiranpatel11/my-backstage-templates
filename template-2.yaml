@@ -1,0 +1,45 @@
+apiVersion: backstage.io/v1beta2
+kind: Template
+metadata:
+  # unique name per namespace for the template
+  name: test-2
+  # title of the template
+  title: Test 2
+  # a description of the template
+  description: Test 2
+  # some tags to display in the frontend
+  tags:
+    - test
+spec:
+  owner: test-team
+  type: service
+
+  # these are the steps which are rendered in the frontend with the form input
+  parameters:
+    - title: Choose name
+      required:
+        - name
+        - product
+      properties:
+        name:
+          title: Name
+          type: string
+          description: Name
+        product:
+          title: product
+          type: string
+          description: Product
+
+  # here's the steps that are executed in series in the scaffolder backend
+  steps:
+
+    - id: fetch-base
+      name: "Fetch Base"
+      action: fetch:cookiecutter
+      input:
+        url: ./skeleton
+        values:
+          artifact_id: '{{ parameters.name }}'
+          product: '{{ parameters.product }}'
+          # owner is specified after product
+          owner: '\{{ cookiecutter.product|lower }}-team'
