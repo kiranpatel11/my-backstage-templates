@@ -1,0 +1,34 @@
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: atm-system
+  title: ATM
+  description: Allows customers to withdraw cash.
+spec:
+  owner: atm-team
+  domain: customer-services
+---
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: email-system
+  title: E-mail System
+  description: The internal Microsoft Exchange e-mail system.
+spec:
+  owner: customer-interactions-team
+  domain: customer-interactions
+---
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: internet-banking-system
+  title: Internet Banking System
+  description: Allows customers to view information about their bank accounts, and make payments.
+spec:
+  owner: core-banking-team
+  domain: personal-banking
+  dependsOn: 
+    - kind: System
+      name: atm-system
+    - kind: System
+      name: email-system
